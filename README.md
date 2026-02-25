@@ -7,6 +7,8 @@
 
 Welcome to **FootprintQ** (My 3D Footprint) — A stunning, interactive 3D footprint map application designed to visualize your travel journeys, automatically parse photo locations, and transform your memories into cinematic stories and beautiful annual reports.
 
+**✨ Live Application:** [footprintq.com](https://footprintq.com)
+
 > **👇 Live Interactive Map Demo (Story Mode & Explore Mode)**
 > 
 > *The following is an actual recording of the interactive 3D globe in action:*
