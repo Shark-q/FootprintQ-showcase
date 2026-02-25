@@ -70,51 +70,12 @@ graph TD
     Frontend -- Map Tiles & Geocoding --> Map
 ```
 
-## 🚀 Getting Started
+## 🌟 Showcase & Portfolio Use
+This repository (**FootprintQ-showcase**) serves as a public demonstration of the architecture, tech stack, and visual capabilities of the FootprintQ application. 
 
-Follow these steps to set up the project locally:
+> **Note on Source Code**: The core source code repository (`my-3d-footprint`) is currently maintained as **Private** to protect proprietary API integration logic and backend configurations. 
 
-### 1. Prerequisites
-- **Node.js**: v18.17+ or v20+
-- **PostgreSQL**: Must have the `postgis` extension installed and enabled locally or via a cloud provider (e.g., Supabase / Vercel Postgres).
-
-### 2. Clone the repository
-```bash
-git clone https://github.com/Shark-q/my-3d-footprint.git
-cd my-3d-footprint
-```
-
-### 3. Install dependencies
-```bash
-npm install
-```
-
-### 4. Environment Variables Setup
-Create a `.env` file in the root directory. You can copy the structure below and fill in your keys:
-
-| Variable | Description | Required Services |
-| :--- | :--- | :--- |
-| `DATABASE_URL` | PostgreSQL connection string (transactional) | Your Postgres DB + PostGIS |
-| `DIRECT_URL` | Direct connection string for Prisma migrations | Your Postgres DB |
-| `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` | Clerk public key for client-side auth | [Clerk](https://clerk.com/) |
-| `CLERK_SECRET_KEY` | Clerk secret key for backend actions | Clerk |
-| `NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN` | Token for rendering the 3D map | [Mapbox](https://account.mapbox.com/) |
-| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL for storage | [Supabase](https://supabase.com/) |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anonymous key | Supabase |
-| `DASHSCOPE_API_KEY` | API Key for Qwen-VL-Max | [Aliyun Dashscope](https://dashscope.aliyun.com/) |
-
-### 5. Database Initialization
-Generate your Prisma client and push the schema (with PostGIS extensions) to your database:
-```bash
-npx prisma generate
-npx prisma migrate dev
-```
-
-### 6. Run the Development Server
-```bash
-npm run dev
-```
-Open [http://localhost:3000](http://localhost:3000) with your browser to experience FootprintQ.
+While the full source code is not publicly available for cloning, this showcase provides a comprehensive look into the design patterns, UI/UX implementation, and sophisticated mapping technologies employed in the project.
 
 ## 📁 Core Directory Structure
 
