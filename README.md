@@ -1,100 +1,133 @@
-<div align="center">
-  <h1>🌍 FootprintQ</h1>
-  <p><strong>A Next-Gen 3D Interactive Travel Tracker & Visualization Tool / 下一代 3D 交互式足迹追踪与可视化工具</strong></p>
-  <p>
-    <a href="#english">🇹🇷 English</a> | <a href="#中文">🇨🇳 中文</a>
-  </p>
-  <p>
-    <a href="https://footprintq.com" target="_blank">
-      <img src="https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge&logo=vercel" alt="Live Demo">
-    </a>
-  </p>
-</div>
+# 🌍 FootprintQ 
 
-<br />
+![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)
+![React](https://img.shields.io/badge/React-19-blue?style=flat-square&logo=react)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?style=flat-square&logo=tailwind-css)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-PostGIS-336791?style=flat-square&logo=postgresql)
 
----
+Welcome to **FootprintQ** (My 3D Footprint) — A stunning, interactive 3D footprint map application designed to visualize your travel journeys, automatically parse photo locations, and transform your memories into cinematic stories and beautiful annual reports.
 
-<h2 id="english">🇬🇧 English</h2>
+> **👇 Live Interactive Map Demo (Story Mode & Explore Mode)**
+> 
+> *The following is an actual recording of the interactive 3D globe in action:*
+> 
+> ![FootprintQ Interactive Demo](./demo_preview.webp)
 
-### 🌟 About The Product
+## ✨ Features
 
-**FootprintQ** is a premium, interactive web application that allows users to visualize their travel history on a stunning 3D interactive Earth. Built with Next.js 16, Mapbox GL JS, and powered by AI, it transforms your trips and travels into beautiful, shareable 3D immersive experiences.
+- 🗺️ **Interactive 3D Globe & Maps**: Experience your travels on a fully interactive 3D globe powered by **Mapbox GL JS**. Toggle between customized map textures (Satellite, Carto basemaps) and smooth fly-to animations.
+- 📸 **Smart Photo Parsing & Batch Upload**: Upload images via drag-and-drop to automatically extract EXIF GPS data and map your footprint.
+- 📱 **Cross-Device Uploading via QR Code**: Easily scan a QR code on your PC screen to securely trigger uploads directly from your mobile device into your active session.
+- 🤖 **AI-Powered Travel Diaries**: Integrated with **Dashscope (Qwen-VL-Max)** to automatically polish your photo notes and generate context-aware, poetic travel stories.
+- 🎬 **Story & Explore Modes**: 
+  - **Story Mode**: Sit back and watch a cinematic, auto-panning journey through your geographical footprint with custom camera movements.
+  - **Explore Mode**: Focus on your map markers with an atmospheric desaturated basemap and glowing active state indicators.
+- 📊 **Annual Reports & Travel Posters**: Generate dynamic, shareable travel posters and map snapshots summarizing your footprint stats (Memories, Cities, Countries crossed).
+- 💎 **Modern UI & Responsive Design**: A beautiful, glassmorphism-inspired interface powered by **Tailwind CSS v4**. Works flawlessly across desktop and mobile, implementing silky-smooth bottom sheets (`vaul`) for touch interactions.
+- 🌐 **Internationalization (i18n)**: Seamless language switching (English / 简体中文) via Next-intl.
 
-> **Note:** The core source code of this project is **closed-source**. This repository serves as the official **community hub** for showcases, feature requests, bug reports, and update logs.
+## 🛠️ Tech Stack
 
-### ✨ Core Features
+- **Core Framework**: [Next.js 16](https://nextjs.org/) (App Router), React 19
+- **Geomorphology & Mapping**: Mapbox GL JS, Turf.js
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Database Architecture**: PostgreSQL + **PostGIS** for spatial queries
+- **ORM**: [Prisma 5.22.0](https://www.prisma.io/)
+- **Asset Storage**: [Supabase Storage](https://supabase.com/)
+- **Authentication**: [Clerk](https://clerk.com/)
+- **AI Capabilities**: Aliyun Dashscope API
 
-* **🌎 Stunning 3D Globe Visualization**: Smooth, glassmorphism-styled Earth map built on Mapbox GL JS.
-* **🗺️ Cinematic Story Mode**: Playback your travels with fly-to animations and sweeping camera angles.
-* **📸 Smart Photo Geo-Tagging**: Drag-and-drop photo uploads with AI EXIF parsing to auto-pin locations.
-* **📊 Comprehensive Timeline & Stats**: Keep track of countries visited, distances traveled, and personal milestones in a beautiful timeline UI.
-* **🌕 Immersive Dark Mode**: Dynamic lighting and starry sky backgrounds that look breathtaking in low-light environments.
-* **🌐 Multilingual Support**: Seamless English and Chinese (Simplified) integration.
+## 🧩 Project Architecture
 
-### 🚀 Live Demo
+FootprintQ utilizes a modern, decoupled architecture to ensure smooth performance for rendering 3D maps and handling media uploads.
 
-Experience the dynamic interface yourself:  
-👉 **[Visit FootprintQ!](https://footprintq.com)**
+```mermaid
+graph TD
+    subgraph Frontend [Next.js Client]
+        UI[UI Components]
+        Map[Mapbox GL JS]
+        Store[Zustand State]
+        UI <--> Store
+        Store <--> Map
+    end
 
-### 🛠️ Built With
+    subgraph Backend [Next.js API Routes]
+        Auth[Clerk Auth]
+        Upload[Upload Sessions API]
+        Data[Prisma ORM]
+    end
 
-We take pride in using modern, cutting-edge web technologies:
-* **Framework**: React 19 & Next.js 16 (App Router)
-* **Styling**: Tailwind CSS v4
-* **Map Engine**: Mapbox GL JS + Turf.js
-* **Backend**: PostgreSQL + PostGIS (via Prisma), Clerk (Auth), Supabase Storage
+    subgraph External Services
+        DB[(PostgreSQL + PostGIS)]
+        Storage[Supabase Storage]
+        AI[Aliyun Dashscope API]
+    end
 
-### 💬 Community & Feedback
+    Frontend -- REST API --> Backend
+    Backend -- DB Connections --> DB
+    Frontend -- Direct Upload --> Storage
+    Backend -- AI Generation --> AI
+    Frontend -- Map Tiles & Geocoding --> Map
+```
 
-We'd love to hear from you! Since the main codebase is private, use this repository's **Issues** to interact with the developer.
-- **🐛 Found a Bug?** [Submit a Bug Report](https://github.com/Shark-q/FootprintQ-showcase/issues/new?assignees=&labels=bug&template=bug_report.md&title=%5BBUG%5D+)
-- **💡 Have a Feature Idea?** [Submit a Feature Request](https://github.com/Shark-q/FootprintQ-showcase/issues/new?assignees=&labels=enhancement&template=feature_request.md&title=%5BFEATURE%5D+)
-- **🙋 General Questions or Feedback?** Start a discussion or open a regular issue.
+## 🚀 Getting Started
 
----
+Follow these steps to set up the project locally:
 
-<br />
+### 1. Prerequisites
+- **Node.js**: v18.17+ or v20+
+- **PostgreSQL**: Must have the `postgis` extension installed and enabled locally or via a cloud provider (e.g., Supabase / Vercel Postgres).
 
-<h2 id="中文">🇨🇳 中文</h2>
+### 2. Clone the repository
+```bash
+git clone https://github.com/Shark-q/my-3d-footprint.git
+cd my-3d-footprint
+```
 
-### 🌟 关于项目
+### 3. Install dependencies
+```bash
+npm install
+```
 
-**FootprintQ** 是一款高端、交互式的 Web 应用程序，允许用户在绝美的 3D 交互地球上可视化他们的旅行历史。项目基于 Next.js 16 和 Mapbox GL JS 构建，并融入 AI 技术，将您的旅行足迹转化为美丽的、可分享的 3D 沉浸式体验。
+### 4. Environment Variables Setup
+Create a `.env` file in the root directory. You can copy the structure below and fill in your keys:
 
-> **注意：** 该项目的核心源代码是**闭源**的。这个仓库作为官方的**社区枢纽**，仅用于产品展示、功能建议、Bug 报告以及更新日志发布。
+| Variable | Description | Required Services |
+| :--- | :--- | :--- |
+| `DATABASE_URL` | PostgreSQL connection string (transactional) | Your Postgres DB + PostGIS |
+| `DIRECT_URL` | Direct connection string for Prisma migrations | Your Postgres DB |
+| `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` | Clerk public key for client-side auth | [Clerk](https://clerk.com/) |
+| `CLERK_SECRET_KEY` | Clerk secret key for backend actions | Clerk |
+| `NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN` | Token for rendering the 3D map | [Mapbox](https://account.mapbox.com/) |
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL for storage | [Supabase](https://supabase.com/) |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anonymous key | Supabase |
+| `DASHSCOPE_API_KEY` | API Key for Qwen-VL-Max | [Aliyun Dashscope](https://dashscope.aliyun.com/) |
 
-### ✨ 核心功能
+### 5. Database Initialization
+Generate your Prisma client and push the schema (with PostGIS extensions) to your database:
+```bash
+npx prisma generate
+npx prisma migrate dev
+```
 
-* **🌎 绝美的 3D 地球可视化**：基于 Mapbox GL JS 构建的极致流畅、具有毛玻璃拟态风格的地球地图。
-* **🗺️ 电影级故事模式 (Story Mode)**：通过平滑的飞行漫游和广角镜头回放您的旅行。
-* **📸 智能照片地理标记**：支持拖拽上传照片，并通过 AI 解析 EXIF 数据自动标记地点。
-* **📊 全面的时间轴与数据统计**：在优美的时间轴 UI 中记录去过的国家、旅行距离和个人里程碑。
-* **🌕 沉浸式暗黑模式**：动态光影效果和璀璨星空背景，在暗光环境下呈现令人惊叹的视觉表现。
-* **🌐 原生多语言支持**：无缝集成的简体中文与英文界面。
+### 6. Run the Development Server
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) with your browser to experience FootprintQ.
 
-### 🚀 在线体验
+## 📁 Core Directory Structure
 
-请亲自体验这惊艳的动态交互：  
-👉 **[访问 FootprintQ!](https://footprintq.com)**
+- `src/app/`: Next.js App Router pages (Landing, Login, APIs).
+- `src/app/api/`: Backend REST routes covering upload sessions, geocoding reverse lookups, and AI proxying.
+- `src/components/`: Modular UI building blocks. `MapboxView.tsx` serves as the heavy-lifting core for map initialization and state management.
+- `src/lib/`: Core utilities including Prisma/Supabase clients and the advanced `story-engine/`.
+- `public/geojson/`: Boundary data parsing for region mapping.
+- `prisma/schema.prisma`: The central truth for our Database Models (`User`, `Journey`, `PhotoNode`, and `UploadSession`).
 
-### 🛠️ 技术栈
+## 👨‍💻 Developer Notes
+- **Styling Rules**: This project uses a CSS-first configuration via `globals.css` with Tailwind CSS v4. No legacy `tailwind.config.js` is utilized.
+- **Geocoding Context**: We rely on Amap APIs for domestic (China) geocoding and standard Mapbox geocoding for international locations to handle boundary precision.
 
-我们始终坚持使用前沿的现代化 Web 技术：
-* **框架**：React 19 & Next.js 16 (App Router)
-* **样式**：Tailwind CSS v4
-* **地图引擎**：Mapbox GL JS + Turf.js
-* **后端**：PostgreSQL + PostGIS (通过 Prisma), Clerk (认证), Supabase (对象存储)
-
-### 💬 社区与反馈
-
-我们非常期待您的反馈！由于主代码库并不公开，请通过此仓库的 **Issues** 与开发者互动：
-- **🐛 发现了 Bug？** [提交 Bug 报告](https://github.com/Shark-q/FootprintQ-showcase/issues/new?assignees=&labels=bug&template=bug_report.md&title=%5BBUG%5D+)
-- **💡 有新功能的点子？** [提交功能建议](https://github.com/Shark-q/FootprintQ-showcase/issues/new?assignees=&labels=enhancement&template=feature_request.md&title=%5BFEATURE%5D+)
-- **🙋 其他问题或反馈？** 可以直接开启 Discussion 或普通 Issue。
-
----
-
-<div align="center">
-  <p>Crafted with ❤️ for travelers around the world.</p>
-</div>
+## 📜 License
+*Project primarily for portfolio and showcase purposes.*
